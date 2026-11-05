@@ -71,7 +71,7 @@ The deployment provides zero-trust public access via a Cloudflare Tunnel, elimin
 In Portainer Git Repository Stacks (especially Portainer CE), relative host bind mounts (such as `./addons/...`) do not resolve against the host filesystem because Portainer manages its clone in internal storage (`/data/compose/<id>`). Attempting relative host bind mounts results in Docker creating an empty directory on the host, causing Odoo to skip `/mnt/extra-addons` as invalid.
 
 **Architectural Solution**:
-1. **Production (`docker-compose-prod.yaml`)**:
+1. **Production (`docker-compose-prod.yml`)**:
    - Uses `build: .` with a multi-stage/lean `Dockerfile` inheriting from `odoo:20.0`.
    - The custom addons (`stratos_crm_rfp` and `stratos_social`) are copied directly into `/mnt/extra-addons` during the Docker image build.
    - Ownership is set to `odoo:odoo`.
@@ -97,7 +97,7 @@ In Portainer Git Repository Stacks (especially Portainer CE), relative host bind
 ## 5. Network Isolation & Security Architecture
 
 ### Zero Public Inbound Ports on Production
-- In production (`docker-compose-prod.yaml`), no host ports are bound.
+- In production (`docker-compose-prod.yml`), no host ports are bound.
 - Ingress is mediated exclusively through the Docker bridge network `vextersoft-tunnel-egress`.
 
 ### Multi-Tier Network Segmentation

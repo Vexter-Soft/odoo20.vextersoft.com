@@ -5,7 +5,7 @@
 - **`Dockerfile`**:
   - Image definition extending `odoo:20.0`. Copies `stratos_crm_rfp` and `stratos_social` into `/mnt/extra-addons` with `odoo:odoo` permissions, ensuring reliable Portainer Git Stack builds.
 
-- **`docker-compose-prod.yaml`**:
+- **`docker-compose-prod.yml`**:
   - Declarative service definitions for the live production/demo stack on `odoo20.vextersoft.com`.
   - Configures `odoo20-db` (PostgreSQL 16 Alpine) and `odoo20-web` (built from `Dockerfile`).
   - Connects to `vextersoft-tunnel-egress` external network with no host ports exposed.

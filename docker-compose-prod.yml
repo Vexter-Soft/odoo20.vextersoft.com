@@ -18,7 +18,10 @@ services:
       retries: 20
 
   web:
-    image: odoo:20.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: odoo20-web:custom
     container_name: odoo20-web
     restart: unless-stopped
     depends_on:
@@ -31,8 +34,6 @@ services:
       PASSWORD: ${ODOO20_DB_PASSWORD:?Set a database password}
     volumes:
       - odoo20-web-data:/var/lib/odoo
-      - ./addons/stratos_crm_rfp_20.0.1.1.0/stratos_crm_rfp:/mnt/extra-addons/stratos_crm_rfp
-      - ./addons/stratos_social_20.0.1.2.0/stratos_social:/mnt/extra-addons/stratos_social
     networks:
       - odoo20-private
       - vextersoft-tunnel-egress

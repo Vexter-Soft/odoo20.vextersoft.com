@@ -30,7 +30,7 @@
 - **State**: Running and healthy via `odoo20-local-web` and `odoo20-local-db`.
 
 ### Production Deployment Spec (`odoo20.vextersoft.com`)
-- Target: `docker-compose-prod.yaml` updated with extra addons volume binds.
+- Target: `docker-compose-prod.yml` updated with Dockerfile build context.
 - Ingress: Cloudflare Tunnel via `vextersoft-tunnel-egress` network.
 
 ---
@@ -38,7 +38,7 @@
 ## Completed Tasks
 1. Configured `.gitignore`, `.env.example`, and `.env`.
 2. Created local development Docker stack `docker-compose.yml` with port `8020:8069`.
-3. Updated `docker-compose-prod.yaml` to mount both custom addons into `/mnt/extra-addons/`.
+3. Updated `docker-compose-prod.yml` to build custom addons via `Dockerfile`.
 4. Executed Odoo 20 automated test suite for `stratos_crm_rfp` and `stratos_social` (46 tests passed).
 5. Validated HTTP reachability on `http://localhost:8020`.
 6. Synchronized AI Knowledge Base (`architecture`, `repository`, `sprint current-state`).
