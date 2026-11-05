@@ -60,6 +60,7 @@ The deployment provides zero-trust public access via a Cloudflare Tunnel, elimin
 | **Custom Addon 1** | `stratos_crm_rfp` | `20.0.1.1.0` | International RFP tracking, deadline crons, and RFP dashboards |
 | **Custom Addon 2** | `stratos_social` | `20.0.1.2.0` | Stratos Social Marketing for Meta, YouTube, and TikTok posting |
 | **Ingress & Egress** | Cloudflare Tunnel (`cloudflared`) | Latest | Secure reverse proxy without open inbound firewall ports |
+| **Stack Management** | Portainer (Git Repository Stack) | Latest | Continuous deployment via GitHub pull-and-redeploy (no SSH needed) |
 | **Local Proxy** | Direct host bind | Port `8020` | Local developer inspection and sanity testing |
 
 ---

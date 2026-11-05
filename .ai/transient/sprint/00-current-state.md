@@ -46,6 +46,7 @@
 ---
 
 ## Next Steps
-- User pushes verified commits to GitHub.
-- Deploy updated `docker-compose-prod.yaml` on VPS.
-- Update Odoo modules in production instance (`odoo -u stratos_crm_rfp,stratos_social`).
+- Trigger **Pull and redeploy** in the Portainer web UI for the `odoo20` stack.
+- In Odoo at `https://odoo20.vextersoft.com`, navigate to **Apps** -> **Update Apps List** and activate:
+  - `stratos_crm_rfp` (CRM International RFP)
+  - `stratos_social` (Stratos Social Marketing)

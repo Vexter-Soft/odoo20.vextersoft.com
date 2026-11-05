@@ -29,3 +29,14 @@
 ## 4. Odoo 20 Module & Customization Rules
 1. **Module Manifests**: Any custom modules developed for this instance must specify `"version": "20.0.1.0.0"`.
 2. **ORM Compatibility**: Respect Odoo 20 API patterns (Python 3.12+, new OWL frontend components, updated web client layouts).
+
+---
+
+## 5. Deployment & CI/CD Operations (Portainer Git Stack)
+1. **No Direct VPS Terminal Access**:
+   - Production operations on the VPS do not require terminal or SSH interaction.
+   - The VPS runs Docker + Portainer, where the production stack is linked directly to the GitHub repository repository (`https://github.com/Vexter-Soft/odoo20.vextersoft.com.git`).
+2. **Git-Centric Promotion Workflow**:
+   - All code, module, and compose changes must be validated locally via `docker-compose.yml`.
+   - Verified changes are committed and pushed to `origin/main`.
+   - Redeployment is executed via Portainer's **Pull and redeploy** UI button or automated repository webhook.
