@@ -35,8 +35,16 @@
 ## 5. Deployment & CI/CD Operations (Portainer Git Stack)
 1. **No Direct VPS Terminal Access**:
    - Production operations on the VPS do not require terminal or SSH interaction.
-   - The VPS runs Docker + Portainer, where the production stack is linked directly to the GitHub repository repository (`https://github.com/Vexter-Soft/odoo20.vextersoft.com.git`).
+   - The VPS runs Docker + Portainer, where the production stack is linked directly to the GitHub repository (`https://github.com/Vexter-Soft/odoo20.vextersoft.com.git`).
 2. **Git-Centric Promotion Workflow**:
    - All code, module, and compose changes must be validated locally via `docker-compose.yml`.
    - Verified changes are committed and pushed to `origin/main`.
-   - Redeployment is executed via Portainer's **Pull and redeploy** UI button or automated repository webhook.
+   - Redeployment is executed via Portainer's **Pull and redeploy** UI button.
+
+---
+
+## 6. Remote Inspection & Automation Standards
+1. **XML-RPC as Primary Interface**:
+   - Remote queries, status checks, and module state inspection on `odoo20.vextersoft.com` are executed via native XML-RPC (`/xmlrpc/2/common` and `/xmlrpc/2/object`) using `scripts/odoo_query.py`.
+2. **Project Boundaries**:
+   - Do not couple or link tools from `e:\myapps\odoo-mcp` (which targets Odoo 19). This repository is strictly dedicated to Odoo 20.
