@@ -37,5 +37,5 @@ Also adds filters, list columns, a kanban badge and an "International RFPs" menu
         ],
     },
     'installable': True,
-    'application': False,
+    'application': True,
 }
