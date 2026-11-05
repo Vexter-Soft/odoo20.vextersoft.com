@@ -67,18 +67,17 @@ The deployment provides zero-trust public access via a Cloudflare Tunnel, elimin
 
 ## 4. Custom Addons Architecture & Mounting Invariants
 
-### Directory Hierarchy & Mounting Pattern
-Source code for custom addons is maintained in the version-tagged directory tree:
-- `addons/stratos_crm_rfp_20.0.1.1.0/stratos_crm_rfp`
-- `addons/stratos_social_20.0.1.2.0/stratos_social`
+### Docker Build vs. Host Bind Mounts
+In Portainer Git Repository Stacks (especially Portainer CE), relative host bind mounts (such as `./addons/...`) do not resolve against the host filesystem because Portainer manages its clone in internal storage (`/data/compose/<id>`). Attempting relative host bind mounts results in Docker creating an empty directory on the host, causing Odoo to skip `/mnt/extra-addons` as invalid.
 
-**Container Invariant**:
-Odoo's `/etc/odoo/odoo.conf` specifies `addons_path = /mnt/extra-addons`. To avoid breaking Odoo's module discovery (which expects `__manifest__.py` directly in immediate subfolders of the addons path), each module is individually bind-mounted:
-```yaml
-volumes:
-  - ./addons/stratos_crm_rfp_20.0.1.1.0/stratos_crm_rfp:/mnt/extra-addons/stratos_crm_rfp
-  - ./addons/stratos_social_20.0.1.2.0/stratos_social:/mnt/extra-addons/stratos_social
-```
+**Architectural Solution**:
+1. **Production (`docker-compose-prod.yaml`)**:
+   - Uses `build: .` with a multi-stage/lean `Dockerfile` inheriting from `odoo:20.0`.
+   - The custom addons (`stratos_crm_rfp` and `stratos_social`) are copied directly into `/mnt/extra-addons` during the Docker image build.
+   - Ownership is set to `odoo:odoo`.
+   - This eliminates all host path dependencies and makes the image self-contained and reproducible.
+2. **Local Development (`docker-compose.yml`)**:
+   - Uses `build: .` with additional local volume mounts for active code iteration and hot-reloading.
 
 ### Module Specifications
 1. **`stratos_crm_rfp`**:

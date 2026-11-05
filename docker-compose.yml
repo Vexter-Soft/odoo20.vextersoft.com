@@ -18,7 +18,10 @@ services:
       retries: 20
 
   web:
-    image: odoo:20.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: odoo20-web:custom
     container_name: odoo20-local-web
     restart: unless-stopped
     depends_on:
