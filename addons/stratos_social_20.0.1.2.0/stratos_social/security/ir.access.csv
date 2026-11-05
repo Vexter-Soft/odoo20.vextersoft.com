@@ -1,0 +1,10 @@
+id,name,model_id,group_id/id,operation,domain
+access_social_account_user,social.account.user,stratos.social.account,stratos_social.group_social_user,r,
+access_social_account_manager,social.account.manager,stratos.social.account,stratos_social.group_social_manager,crud,
+access_social_post_user,social.post.user,stratos.social.post,stratos_social.group_social_user,crud,
+access_social_live_post_user,social.live.post.user,stratos.social.live.post,stratos_social.group_social_user,cru,
+access_social_live_post_manager,social.live.post.manager,stratos.social.live.post,stratos_social.group_social_manager,crud,
+access_social_token_wizard_manager,social.token.wizard.manager,stratos.social.token.wizard,stratos_social.group_social_manager,crud,
+rule_social_account_company,Social account: multi-company,stratos.social.account,,crud,"[('company_id', 'in', company_ids)]"
+rule_social_post_company,Social post: multi-company,stratos.social.post,,crud,"[('company_id', 'in', company_ids)]"
+rule_social_live_post_company,Social post result: multi-company,stratos.social.live.post,,crud,"[('company_id', 'in', company_ids)]"

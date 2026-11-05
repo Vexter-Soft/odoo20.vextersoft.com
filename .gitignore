@@ -1,0 +1,19 @@
+# Environment secrets
+.env
+*.env.local
+
+# Logs and system files
+*.log
+.DS_Store
+Thumbs.db
+
+# Python bytecode and caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Local database dumps
+*.sql
+*.dump
